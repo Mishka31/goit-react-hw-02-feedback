@@ -1,5 +1,5 @@
 import React from "react";
-import Feedback from "./feedback/feedback.jsx";
+import Feedback from "./Components/feedback/feedback.jsx";
 
 function App() {
   return (

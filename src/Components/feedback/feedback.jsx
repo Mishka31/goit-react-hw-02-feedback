@@ -1,8 +1,8 @@
 import React from "react";
-import Section from "./section/section.jsx";
-import Panel from "./panel/panel.jsx";
-import Statistic from "./statistic/statistic.jsx";
-import Notification from "./notification/notification.jsx";
+import Section from "../section/section.jsx";
+import Panel from "../panel/panel.jsx";
+import Statistic from "../statistic/statistic.jsx";
+import Notification from "../notification/notification.jsx";
 
 class Feedback extends React.Component {
   static defaultProps = {
@@ -13,8 +13,6 @@ class Feedback extends React.Component {
     good: 0,
     neutral: 0,
     bad: 0,
-    total: 0,
-    procenteg: this.props.initProcent,
   };
 
   countTotalFeedback = () => {
@@ -25,26 +23,30 @@ class Feedback extends React.Component {
     const { good } = this.state;
     return Math.round((good / this.countTotalFeedback()) * 100);
   };
-  onButtonGood = () => {
+  totalAndProcenteg = () => {
     this.setState((s) => ({
-      good: s.good + 1,
       total: this.countTotalFeedback(),
       procenteg: this.countPositiveFeedbackPercentage(),
     }));
+  };
+
+  onButtonGood = () => {
+    this.setState((s) => ({
+      good: s.good + 1,
+    }));
+    this.totalAndProcenteg();
   };
   onButtonNeutral = () => {
     this.setState((s) => ({
       neutral: s.neutral + 1,
-      total: this.countTotalFeedback(),
-      procenteg: this.countPositiveFeedbackPercentage(),
     }));
+    this.totalAndProcenteg();
   };
   onButtonBad = () => {
     this.setState((s) => ({
       bad: s.bad + 1,
-      total: this.countTotalFeedback(),
-      procenteg: this.countPositiveFeedbackPercentage(),
     }));
+    this.totalAndProcenteg();
   };
 
   render() {
