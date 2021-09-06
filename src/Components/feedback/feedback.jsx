@@ -25,7 +25,6 @@ class Feedback extends React.Component {
   };
   totalAndProcenteg = () => {
     this.setState((s) => ({
-      total: this.countTotalFeedback(),
       procenteg: this.countPositiveFeedbackPercentage(),
     }));
   };
@@ -34,19 +33,16 @@ class Feedback extends React.Component {
     this.setState((s) => ({
       good: s.good + 1,
     }));
-    this.totalAndProcenteg();
   };
   onButtonNeutral = () => {
     this.setState((s) => ({
       neutral: s.neutral + 1,
     }));
-    this.totalAndProcenteg();
   };
   onButtonBad = () => {
     this.setState((s) => ({
       bad: s.bad + 1,
     }));
-    this.totalAndProcenteg();
   };
 
   render() {
